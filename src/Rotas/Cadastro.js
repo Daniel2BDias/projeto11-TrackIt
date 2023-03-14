@@ -21,12 +21,14 @@ export default function Cadastro () {
 };
 
 const Body = styled.div`
+  
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
     box-sizing: border-box;
+    
 `;
 
 const Logo = styled.img`
