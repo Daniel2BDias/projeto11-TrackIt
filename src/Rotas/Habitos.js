@@ -16,6 +16,5 @@ export default function Habitos () {
 const Body = styled.main`
     margin: 70px 0;
     height: 100%;
-    overflow: scroll; 
     width: 100%;
 `;
