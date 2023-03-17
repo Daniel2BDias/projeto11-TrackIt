@@ -59,6 +59,6 @@ const Hoje = styled.section`
     position: absolute;
     color: #FFFFFF;
     top: 41px;
-    left: 33%;
+    left: 33.5%;
     z-index: 2;
 `
