@@ -1,9 +1,21 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import trackit from "../assets/logo/TrackIt.png";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Content from "../components/Content";
 
 export default function Habitos () {
     return (
-        <></>
+        <Body>
+            <Header></Header>
+            <Content></Content>
+            <Footer></Footer>
+        </Body>
     )
 };
+
+const Body = styled.main`
+    margin: 70px 0;
+    height: 100%;
+    overflow: scroll; 
+    width: 100%;
+`;

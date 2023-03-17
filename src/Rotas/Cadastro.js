@@ -1,19 +1,33 @@
 import styled from "styled-components";
 import logo from "../assets/logo/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Cadastro () {
+
+    const [cadastro, setCadastro] = useState({});
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [image, setImage] = useState("");
+
+    const cadastrar = (event) => {
+        event.preventDefault();
+        setCadastro({email, name, image, password})
+        const promise = axios.post("", cadastro);
+    }
 
     const navigate = useNavigate();
     return (
         <Body>
             <Logo src={logo}/>
-            <Form>
-                <Input placeholder="email" required></Input>
-                <Input placeholder="senha" required></Input>
-                <Input placeholder="nome" required></Input>
-                <Input placeholder="foto" required></Input>
-                <Button>Cadastrar</Button>
+            <Form onSubmit={() => cadastrar()}>
+                <Input placeholder="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
+                <Input placeholder="senha" type="password" name="senha" value={password} onChange={(e) => setPassword(e.target.value)} required></Input>
+                <Input placeholder="nome" type="text" name="nome" value={name} onChange={(e) => setName((e.target.value))} required></Input>
+                <Input placeholder="foto" type="url" name="foto" value={image} onChange={(e) => setImage(e.target.value)} required></Input>
+                <Button type="submit" disabled={false} >Cadastrar</Button>
             </Form>
             <Login onClick={() => navigate("/")}><span>Já possui um conta? Faça o Login!</span></Login>
         </Body>
@@ -47,10 +61,13 @@ const Input = styled.input`
     margin: 2px 0;
     height: 45px;
     width: 290px;
-    color: #D4D4D4;
     border: 1px solid #D4D4D4;
     border-radius: 5px;
     padding: 0 5px;
+
+    &::placeholder {
+        color: #D4D4D4;
+    }
 `;
 
 const Button = styled.button`
@@ -62,6 +79,14 @@ const Button = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
 `;
 
 const Login = styled.div`

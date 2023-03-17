@@ -10,8 +10,8 @@ export default function Login () {
         <Body>
             <Logo src={logo}/>
             <Form>
-                <Input placeholder="email" required></Input>
-                <Input placeholder="senha" required></Input>
+                <Input placeholder="email" type="email" required></Input>
+                <Input placeholder="senha" type="password" required></Input>
                 <Button>Entrar</Button>
             </Form>
             <Cadastro onClick={() => navigate("/Cadastro")}><span>Não tem uma conta? Cadastre-se!</span></Cadastro>
@@ -44,10 +44,13 @@ const Input = styled.input`
     margin: 2px 0;
     height: 45px;
     width: 290px;
-    color: #D4D4D4;
     border: 1px solid #D4D4D4;
     border-radius: 5px;
     padding: 0 5px;
+
+    &::placeholder {
+        color: #D4D4D4;
+    }
 `;
 
 const Button = styled.button`
@@ -59,6 +62,14 @@ const Button = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
 `;
 
 const Cadastro = styled.div`
