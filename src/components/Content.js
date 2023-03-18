@@ -1,14 +1,58 @@
 import styled from "styled-components";
+import { CgMathPlus } from "react-icons/cg";
+import NovoHabito from "./NovoHabito";
+import Habito from "./Habito";
+
 
 export default function Content () {
     return (
-        <Cont></Cont>
+        <Body>
+        <Head><div>Meus hábitos</div><button><CgMathPlus /></button></Head>
+        <Cont>
+            <NovoHabito />
+        </Cont>
+        </Body>
     );
 };
 
+const Body = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
 const Cont = styled.div`
     height: 100%;
     width: 100%;
-    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const Head = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+
+    div {
+        width: 180px;
+        text-align: center;
+        color: #126BA5;
+        font-size: 23px;
+    }
+
+    button {
+        margin-right: 18px;
+        height: 40px;
+        width: 40px;
+        border: none;
+        border-radius: 5px;
+        font-size: 22px;
+        background-color: #52B6FF;
+        text-align: center;
+        color: #FFFFFF;
+        padding-top: 7px;
+    }
 `

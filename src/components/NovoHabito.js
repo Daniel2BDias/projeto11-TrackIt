@@ -1,0 +1,100 @@
+import styled from "styled-components";
+import dayArray from "../assets/Arrays/dayArray";
+import { useState } from "react";
+
+export default function NovoHabito () {
+
+    return (
+        <Box>
+            <InputBox>
+            <Input type="text" placeholder="nome do hábito"></Input>
+            <Days >
+                <Day/>
+            </Days>
+            </InputBox>
+            <Options>
+                <div>
+                    <span>Cancelar</span>
+                    <button>Salvar</button>
+                </div>
+            </Options>
+        </Box>
+    );
+};
+
+const Day = () => {
+    
+    return (
+        <>
+        {dayArray.map(d => <D dia={d}/>)}
+        </>
+    )
+};
+
+const D = ({dia}) => {
+    return <button>{dia}</button>;
+};
+
+const Box = styled.div`
+    background-color: white;
+    border-radius: 5px;
+    height: 180px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+        border: 1px solid #D4D4D4;
+        background-color: white;
+    }
+
+`
+
+const InputBox = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const Input = styled.input`
+    margin-bottom: 5px;
+    height: 45px;
+    width: 300px;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+
+    &::placeholder {
+        padding-left: 5px;
+        color: #DBDBDB;
+    }
+`
+
+const Days = styled.div`    
+    button {
+        margin-right: 5px;
+        font-size: 20px;
+        color: #DBDBDB;
+        background-color: #FFFFFF;
+        height: 30px;
+        width: 30px;
+        border-radius: 5px;
+    }
+`
+const Options = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: #52B6FF;
+    margin-right: 32px;
+
+    button {
+        width: 84px;
+        height: 35px;
+        font-size: 16px;
+        color: white;
+        background-color: #52B6FF;
+        border-radius: 5px;
+        margin-left: 25px;
+    }
+`

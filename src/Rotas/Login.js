@@ -26,6 +26,7 @@ const Body = styled.div`
     justify-content: center;
     box-sizing: border-box;
     margin-top: 50px;
+    background-color: white;
 `;
 
 const Logo = styled.img`

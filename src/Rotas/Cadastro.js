@@ -11,14 +11,27 @@ export default function Cadastro () {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
-    const cadastrar = (event) => {
-        event.preventDefault();
-        setCadastro({email, name, image, password})
-        const promise = axios.post("", cadastro);
-    }
+    console.log({email, password, name, image});
 
     const navigate = useNavigate();
+
+    const cadastrar = (e) => {
+        e.preventDefault();
+        setDisabled(true);
+        setCadastro({email, name, image, password});
+        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", cadastro);
+        promise.then((res) => { 
+            navigate(-1);
+            console.log(res);
+        });
+        promise.catch((err) => {
+            alert("Deu Xabu");
+            setDisabled(false);    
+        });
+    };
+
     return (
         <Body>
             <Logo src={logo}/>
@@ -27,7 +40,7 @@ export default function Cadastro () {
                 <Input placeholder="senha" type="password" name="senha" value={password} onChange={(e) => setPassword(e.target.value)} required></Input>
                 <Input placeholder="nome" type="text" name="nome" value={name} onChange={(e) => setName((e.target.value))} required></Input>
                 <Input placeholder="foto" type="url" name="foto" value={image} onChange={(e) => setImage(e.target.value)} required></Input>
-                <Button type="submit" disabled={false} >Cadastrar</Button>
+                <Button type="submit" disabled={disabled}>Cadastrar</Button>
             </Form>
             <Login onClick={() => navigate("/")}><span>Já possui um conta? Faça o Login!</span></Login>
         </Body>
@@ -42,6 +55,7 @@ const Body = styled.div`
     justify-content: center;
     margin-top: 50px;
     box-sizing: border-box;
+    background-color: white;
     
 `;
 
