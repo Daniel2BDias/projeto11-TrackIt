@@ -3,6 +3,7 @@ import logo from "../assets/logo/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "../components/Loading";
 
 export default function Cadastro () {
 
@@ -13,18 +14,17 @@ export default function Cadastro () {
     const [image, setImage] = useState("");
     const [disabled, setDisabled] = useState(false);
 
-    console.log({email, password, name, image});
+    console.log({email, name, image, password});
 
     const navigate = useNavigate();
 
     const cadastrar = (e) => {
-        e.preventDefault();
+        e.preventDefault(true);
         setDisabled(true);
         setCadastro({email, name, image, password});
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", cadastro);
         promise.then((res) => { 
-            navigate(-1);
-            console.log(res);
+            navigate("/");
         });
         promise.catch((err) => {
             alert("Deu Xabu");
@@ -35,12 +35,12 @@ export default function Cadastro () {
     return (
         <Body>
             <Logo src={logo}/>
-            <Form onSubmit={() => cadastrar()}>
+            <Form onSubmit={cadastrar}>
                 <Input placeholder="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
                 <Input placeholder="senha" type="password" name="senha" value={password} onChange={(e) => setPassword(e.target.value)} required></Input>
                 <Input placeholder="nome" type="text" name="nome" value={name} onChange={(e) => setName((e.target.value))} required></Input>
                 <Input placeholder="foto" type="url" name="foto" value={image} onChange={(e) => setImage(e.target.value)} required></Input>
-                <Button type="submit" disabled={disabled}>Cadastrar</Button>
+                <Button type="submit" disabled={disabled}>{disabled ? <Loading/> : "Cadastrar"}</Button>
             </Form>
             <Login onClick={() => navigate("/")}><span>Já possui um conta? Faça o Login!</span></Login>
         </Body>
@@ -93,6 +93,10 @@ const Button = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 
     &:hover {
         cursor: pointer;

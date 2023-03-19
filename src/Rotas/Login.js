@@ -1,18 +1,43 @@
 import styled from "styled-components";
 import logo from "../assets/logo/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import Loading from "../components/Loading";
+import axios from "axios";
+import UserContext from "../components/userContext";
 
 
 export default function Login () {
 
     const navigate = useNavigate();
+    const [disabled, setDisabled] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { login, setLogin } = useContext(UserContext);
+    const body = {
+        email: email,
+        password: password
+    };
+
+    const logIn = (e) => {
+        e.preventDefault(true);
+        setDisabled(!disabled);
+        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
+        promise.then(res => {
+            setLogin({ ...login, token: res.token, image: res.image });
+            navigate("/habitos");
+        });
+        promise.catch(err=>alert(err.response.status));
+
+    }
+    
     return (
         <Body>
             <Logo src={logo}/>
-            <Form>
-                <Input placeholder="email" type="email" required></Input>
-                <Input placeholder="senha" type="password" required></Input>
-                <Button>Entrar</Button>
+            <Form onSubmit={logIn}>
+                <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
+                <Input placeholder="senha" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} required></Input>
+                <Button disabled={disabled} type="submit" >{!disabled ? "Entrar" : <Loading/>}</Button>
             </Form>
             <Cadastro onClick={() => navigate("/Cadastro")}><span>Não tem uma conta? Cadastre-se!</span></Cadastro>
         </Body>
@@ -55,21 +80,31 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-    font-size: 21px;
-    margin: 1px 0;
-    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 45px;
     width: 303px;
-    background-color: #52B6FF;
-    color: #FFFFFF;
-    border-radius: 5px;
+    border: none;
+    margin: 1px 0;
+
+    &:disabled {
+        background-color: #52B6FF;
+    }
+
+    &:enabled {
+        font-size: 21px;
+        background-color: #52B6FF;
+        color: #FFFFFF;
+    }
 
     &:hover {
-        cursor: pointer;
+        cursor: ${props => props.disabled ? "initial" : "pointer"};
     }
 
     &:active {
-        transform: scale(0.95);
+        transform: ${props => props.disabled ? "none" : "scale(0.95)"};
     }
 `;
 
