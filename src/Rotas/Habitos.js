@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Content from "../components/Content";
 
 export default function Habitos () {
+    
+
     return (
         <Body>
             <Header></Header>
@@ -17,4 +19,7 @@ const Body = styled.main`
     margin: 70px 0;
     height: 100%;
     width: 100%;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
 `;

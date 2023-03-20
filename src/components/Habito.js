@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { CgTrash } from "react-icons/cg";
 import dayArray from "../assets/Arrays/dayArray";
 
-export default function Habito () {
+export default function Habito ({habits}) {
     const removeHabit = () => {
 
     }
@@ -11,9 +11,9 @@ export default function Habito () {
         <Box>
             <Cont>
                 <h1>
-                    Hábito 1
+                    {"placeholder"}
                 </h1>
-                <Days />
+                <Days days={null}/>
             </Cont>
             <CgTrash onClick={() => removeHabit} className="icon"
                 color="666666"
@@ -53,24 +53,25 @@ const Cont = styled.div`
     }
 `
 
-function Days () {
+function Days ({days}) {
     return (
-        <Day/>
+        <Day days={days}/>
     );
 };
 
-const Day = () => {
+const Day = ({days}) => {
     
     return (
-        <BDays>
-        {dayArray.map(d => <D dia={d}/>)}
+
+        <BDays >
+        {dayArray.map(d => <D days={days} dia={d}/>)}
         </BDays>
     )
 };
 
-const D = ({dia, selecionado}) => {
+const D = ({dia, selecionado, days}) => {
     
-    return <DayButton selecionado={selecionado}>{dia}</DayButton>;
+    return <DayButton days={days}>{dia}</DayButton>;
 };
 
 const BDays = styled.div`
@@ -85,8 +86,8 @@ const BDays = styled.div`
 
 const DayButton = styled.button`
 
-    color: ${(props) => props.selecionado ? "white" : "#DBDBDB"};
-    background-color: ${(props) => props.selecionado ? "#CFCFCF" : "white"};
+    color: ${(props) => props.days ? "white" : "#DBDBDB"};
+    background-color: ${(props) => props.days ? "#CFCFCF" : "white"};
     border: 1px solid #DBDBDB;
 
 `

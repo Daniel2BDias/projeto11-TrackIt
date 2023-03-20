@@ -2,7 +2,7 @@ import styled from "styled-components";
 import dayArray from "../assets/Arrays/dayArray";
 import { useState } from "react";
 
-export default function NovoHabito () {
+export default function NovoHabito ({newHabit, setNewHabit}) {
 
     return (
         <Box>
@@ -14,7 +14,7 @@ export default function NovoHabito () {
             </InputBox>
             <Options>
                 <div>
-                    <span>Cancelar</span>
+                    <span onClick={() => setNewHabit(false)}>Cancelar</span>
                     <button>Salvar</button>
                 </div>
             </Options>

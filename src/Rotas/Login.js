@@ -13,7 +13,7 @@ export default function Login () {
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login, setLogin } = useContext(UserContext);
+    const { userInfo, setUserInfo } = useContext(UserContext);
     const body = {
         email: email,
         password: password
@@ -24,8 +24,9 @@ export default function Login () {
         setDisabled(!disabled);
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
         promise.then(res => {
-            //setLogin({ ...login, token: res.token, image: res.image });
+            setUserInfo({ ...userInfo, token: res.data.token, image: res.data.image });
             navigate("/habitos");
+            console.log(res);
         });
         promise.catch(err=>alert(err.response.status));
 

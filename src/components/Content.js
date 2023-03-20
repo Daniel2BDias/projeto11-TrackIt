@@ -2,17 +2,44 @@ import styled from "styled-components";
 import { CgMathPlus } from "react-icons/cg";
 import NovoHabito from "./NovoHabito";
 import Habito from "./Habito";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import UserContext from "./userContext";
 
 
 export default function Content () {
+
+    const [newHabit, setNewHabit] = useState(false);
+    const [hasHabit, setHasHabit] = useState(false);
+    const {userInfo, setUserInfo} = useContext(UserContext);
+    const Auth = {
+        headers: {
+          'Authorization': `Bearer ${userInfo.token}` 
+        }
+      }
+
+    const renderNewHabit = () => {
+        setNewHabit(true);
+    }
+
+    useEffect(() => {
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", Auth)
+        promise.then(({data}) => {
+
+            setUserInfo({...userInfo, habitshabits : data})
+
+    });
+        promise.catch(err => alert(err.response.data.message))
+    }, [])
+
     return (
         <Body>
-        <Head><div>Meus hábitos</div><button><CgMathPlus /></button></Head>
-        <Cont>
-            <NovoHabito/>
-            <Habito />
-            <MOTD><p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p></MOTD>
-        </Cont>
+            <Head><div>Meus hábitos</div><button onClick={renderNewHabit}><CgMathPlus /></button></Head>
+            <Cont>
+                {newHabit ? <NovoHabito newHabit={newHabit} setNewHabit={setNewHabit}/> : null}
+                {userInfo.habits !== [] ? userInfo.habits.map(({id, days, name}) => <Habito id={id} days={days} name={name}/>) : null}
+                {!hasHabit ? <MOTD><p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p></MOTD> : null}
+            </Cont>
         </Body>
     );
 };
@@ -75,4 +102,5 @@ const MOTD = styled.div`
     font-size: 18px;
     box-sizing: border-box;
     padding: 20px;
+    color: #666666;
 `

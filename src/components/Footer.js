@@ -24,7 +24,7 @@ export default function Footer () {
                 })}
             />
             </Progress>
-            <div className="historico">Histórico</div>
+            <div onClick={() => navigate("/Historico")} className="historico">Histórico</div>
         </Foot>
     )
 };

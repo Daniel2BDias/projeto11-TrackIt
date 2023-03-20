@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import trackit from "../assets/logo/TrackIt.png";
+import { useContext } from "react";
+import UserContext from "./userContext";
 
 export default function Header () {
+
+    const {userInfo} = useContext(UserContext);
+
     return (
         <Head>
             <img src={trackit}/>
-            <img className="userImage" src={undefined} />
+            <img className="userImage" src={userInfo.image} />
         </Head>
     )
 };
