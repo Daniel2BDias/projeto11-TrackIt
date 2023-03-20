@@ -8,14 +8,14 @@ export default function Habito ({habits}) {
     }
 
     return (
-        <Box>
+        <Box data-test="habit-container"> 
             <Cont>
-                <h1>
+                <h1 data-test="habit-name">
                     {"placeholder"}
                 </h1>
                 <Days days={null}/>
             </Cont>
-            <CgTrash onClick={() => removeHabit} className="icon"
+            <CgTrash data-test="habit-delete-btn" onClick={() => removeHabit} className="icon"
                 color="666666"
             />
         </Box>
@@ -71,7 +71,7 @@ const Day = ({days}) => {
 
 const D = ({dia, selecionado, days}) => {
     
-    return <DayButton days={days}>{dia}</DayButton>;
+    return <DayButton data-test="habit-day" days={days}>{dia}</DayButton>;
 };
 
 const BDays = styled.div`

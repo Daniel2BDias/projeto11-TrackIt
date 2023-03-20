@@ -26,7 +26,6 @@ export default function Login () {
         promise.then(res => {
             setUserInfo({ ...userInfo, token: res.data.token, image: res.data.image });
             navigate("/habitos");
-            console.log(res);
         });
         promise.catch(err=>alert(err.response.status));
 
@@ -36,11 +35,11 @@ export default function Login () {
         <Body>
             <Logo src={logo}/>
             <Form onSubmit={logIn}>
-                <Input disabled={disabled} placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
-                <Input disabled={disabled} placeholder="senha" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} required></Input>
-                <Button disabled={disabled} type="submit" >{!disabled ? "Entrar" : <Loading/>}</Button>
+                <Input data-test="email-input" disabled={disabled} placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
+                <Input data-test="password-input" disabled={disabled} placeholder="senha" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} required></Input>
+                <Button data-test="login-btn" disabled={disabled} type="submit" >{!disabled ? "Entrar" : <Loading/>}</Button>
             </Form>
-            <Cadastro onClick={() => navigate("/Cadastro")}><span>Não tem uma conta? Cadastre-se!</span></Cadastro>
+            <Cadastro data-test="signup-link" onClick={() => navigate("/Cadastro")}><span>Não tem uma conta? Cadastre-se!</span></Cadastro>
         </Body>
     );
 };

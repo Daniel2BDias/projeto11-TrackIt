@@ -5,17 +5,17 @@ import { useState } from "react";
 export default function NovoHabito ({newHabit, setNewHabit}) {
 
     return (
-        <Box>
+        <Box data-test="habit-create-container">
             <InputBox>
-            <Input type="text" placeholder="nome do hábito"></Input>
+            <Input data-test="habit-name-input" type="text" placeholder="nome do hábito"></Input>
             <Days >
                 <Day/>
             </Days>
             </InputBox>
             <Options>
                 <div>
-                    <span onClick={() => setNewHabit(false)}>Cancelar</span>
-                    <button>Salvar</button>
+                    <span data-test="habit-create-cancel-btn" onClick={() => setNewHabit(false)}>Cancelar</span>
+                    <button data-test="habit-create-save-btn">Salvar</button>
                 </div>
             </Options>
         </Box>
@@ -39,7 +39,7 @@ const D = ({dia}) => {
         setSelecionado(!selecionado);
     }
     
-    return <DayButton selecionado={selecionado} onClick={seleciona}>{dia}</DayButton>;
+    return <DayButton data-test="habit-day" selecionado={selecionado} onClick={seleciona}>{dia}</DayButton>;
 };
 
 const Box = styled.div`

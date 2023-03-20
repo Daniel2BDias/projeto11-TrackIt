@@ -8,7 +8,7 @@ export default function Header () {
     const {userInfo} = useContext(UserContext);
 
     return (
-        <Head>
+        <Head data-test="header">
             <img src={trackit}/>
             <img className="userImage" src={userInfo.image} />
         </Head>
@@ -26,6 +26,7 @@ const Head = styled.header`
     top: 0;
     left: 0;
     z-index: 1;
+    box-shadow: 1px 2px 1px #C4C4C4;
     
     img {
         height: auto;
