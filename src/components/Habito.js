@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import { CgTrash } from "react-icons/cg";
 import dayArray from "../assets/Arrays/dayArray";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function Habito ({name, days}) {
+export default function Habito ({name, days, id, auth}) {
+
+    const navigate = useNavigate();
+
     const removeHabit = () => {
 
+        if(window.confirm("Deseja mesmo deletar este hábito?")) {
+
+        const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, auth);
+        promise.then(navigate("/habitos"));
+        promise.catch(err => alert(`${err.response.data.message}`));
+
+        }
     }
 
     return (
@@ -15,9 +27,9 @@ export default function Habito ({name, days}) {
                 </h1>
                 <Days days={days}/>
             </Cont>
-            <CgTrash data-test="habit-delete-btn" onClick={() => removeHabit} className="icon"
+            <DeleteBtn data-test="habit-delete-btn" onClick={removeHabit}><CgTrash className="icon"
                 color="666666"
-            />
+            /></DeleteBtn>
         </Box>
     );
 };
@@ -91,4 +103,11 @@ const DayButton = styled.button`
     background-color: ${(props) => props.days ? "#CFCFCF" : "white"};
     border: 1px solid #DBDBDB;
 
+`
+
+const DeleteBtn = styled.button`
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-color: white;
 `

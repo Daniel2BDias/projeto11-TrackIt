@@ -37,7 +37,7 @@ export default function Content () {
             <Head><div>Meus hábitos</div><button data-test="habit-create-btn" onClick={renderNewHabit}><CgMathPlus /></button></Head>
             <Cont>
                 {newHabit ? <NovoHabito newHabit={newHabit} setNewHabit={setNewHabit}/> : null}
-                {userInfo.habits !== [] ? userInfo.habits.map(({id, days, name}) => <Habito id={id} days={days} name={name}/>) : null}
+                {userInfo.habits !== [] ? userInfo.habits.map(({id, days, name}) => <Habito auth={Auth} id={id} days={days} name={name}/>) : null}
                 {userInfo.habits === [] ? <MOTD><p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p></MOTD> : null}
             </Cont>
         </Body>
@@ -48,8 +48,7 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 90vh;
+    height: 80vh;
 `
 
 const Cont = styled.div`
@@ -68,7 +67,6 @@ const Head = styled.div`
     width: 100%;
 
     div {
-        height: 80px;
         width: 180px;
         text-align: center;
         color: #126BA5;
