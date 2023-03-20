@@ -34,7 +34,7 @@ export default function Content () {
 
     return (
         <Body>
-            <Head><div>Meus hábitos</div><button onClick={renderNewHabit}><CgMathPlus /></button></Head>
+            <Head><div>Meus hábitos</div><button data-test="habit-create-btn" onClick={renderNewHabit}><CgMathPlus /></button></Head>
             <Cont>
                 {newHabit ? <NovoHabito newHabit={newHabit} setNewHabit={setNewHabit}/> : null}
                 {userInfo.habits !== [] ? userInfo.habits.map(({id, days, name}) => <Habito id={id} days={days} name={name}/>) : null}

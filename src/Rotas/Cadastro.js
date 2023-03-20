@@ -37,10 +37,10 @@ export default function Cadastro () {
         <Body>
             <Logo src={logo}/>
             <Form onSubmit={cadastrar}>
-                <Input data-test="email-input" placeholder="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
-                <Input data-test="password-input" placeholder="senha" type="password" name="senha" value={password} onChange={(e) => setPassword(e.target.value)} required></Input>
-                <Input data-test="user-name-input" placeholder="nome" type="text" name="nome" value={name} onChange={(e) => setName((e.target.value))} required></Input>
-                <Input data-test="user-image-input" placeholder="foto" type="url" name="foto" value={image} onChange={(e) => setImage(e.target.value)} required></Input>
+                <Input data-test="email-input" disabled={disabled} placeholder="email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
+                <Input data-test="password-input" disabled={disabled} placeholder="senha" type="password" name="senha" value={password} onChange={(e) => setPassword(e.target.value)} required></Input>
+                <Input data-test="user-name-input" disabled={disabled} placeholder="nome" type="text" name="nome" value={name} onChange={(e) => setName((e.target.value))} required></Input>
+                <Input data-test="user-image-input" disabled={disabled} placeholder="foto" type="url" name="foto" value={image} onChange={(e) => setImage(e.target.value)} required></Input>
                 <Button data-test="signup-btn" type="submit" disabled={disabled}>{disabled ? <Loading/> : "Cadastrar"}</Button>
             </Form>
             <Login data-test="login-link" onClick={() => navigate("/")}><span>Já possui um conta? Faça o Login!</span></Login>

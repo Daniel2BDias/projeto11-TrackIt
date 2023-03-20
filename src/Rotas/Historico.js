@@ -4,20 +4,27 @@ import Footer from "../components/Footer";
 
 export default function Historico () {
     return (
-        <>
+        <Body>
         <Header />
         <Box>
         <H>Histórico</H>
-        <MOTD>Em breve você poderá ver o histórico dos seus hábitos aqui!</MOTD>
+        <MOTD data-test="calendar">Em breve você poderá ver o histórico dos seus hábitos aqui!</MOTD>
         </Box>
         <Footer />
-        </>
+        </Body>
     )
 };
 
 const Box = styled.div`
     margin: 70px 0;
 `
+const Body = styled.main`
+    height: 100vh;
+    width: 100%;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+`;
 
 const H = styled.div`
     height: 80px;
