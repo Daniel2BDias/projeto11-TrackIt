@@ -11,7 +11,7 @@ export default function Footer () {
             <Progress>
             <Hoje onClick={() => navigate("/Hoje")}>Hoje</Hoje>
             <CircularProgressbar
-                value={0.5}
+                value={0}
                 maxValue={100}
                 background
                 backgroundPadding={6}

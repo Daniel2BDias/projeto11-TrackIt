@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { CgTrash } from "react-icons/cg";
 import dayArray from "../assets/Arrays/dayArray";
-import { useState } from "react";
 
 export default function Habito () {
     const removeHabit = () => {
@@ -31,13 +30,27 @@ const Box = styled.div`
     padding: 10px 10px 10px 20px;
     display: flex;
     justify-content: space-between;
+
+    .icon:hover {
+        cursor: pointer;
+    }
+
+    .icon:active {
+        transform: scale(0.95);
+    }
 `
 
 const Cont = styled.div`
     height: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;  
+    justify-content: space-between; 
+
+    h1 {
+        font-size: 20px;
+        color: #666666;
+        margin-bottom: 3px;
+    }
 `
 
 function Days () {

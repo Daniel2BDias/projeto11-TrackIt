@@ -68,12 +68,14 @@ const Input = styled.input`
     margin-bottom: 5px;
     height: 45px;
     width: 300px;
+    font-size: 20px;
     border: 1px solid #D4D4D4;
     border-radius: 5px;
+    padding-left: 5px;
 
     &::placeholder {
-        padding-left: 5px;
         color: #DBDBDB;
+
     }
 `
 
