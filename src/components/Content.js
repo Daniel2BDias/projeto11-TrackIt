@@ -48,8 +48,8 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     height: 90vh;
-    box-sizing: border-box;
 `
 
 const Cont = styled.div`
@@ -66,13 +66,16 @@ const Head = styled.div`
     align-items: center;
     height: 80px;
     width: 100%;
-    box-sizing: border-box;
 
     div {
+        height: 80px;
         width: 180px;
         text-align: center;
         color: #126BA5;
         font-size: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     button {
