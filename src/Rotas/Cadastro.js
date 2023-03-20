@@ -24,10 +24,11 @@ export default function Cadastro () {
         setCadastro({email, name, image, password});
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", cadastro);
         promise.then((res) => { 
+            alert("Usuário Cadastrado!")
             navigate("/");
         });
         promise.catch((err) => {
-            alert("Deu Xabu");
+            alert("Deu Xabu!" + ` ${err.response.data.message}`);
             setDisabled(false);    
         });
     };

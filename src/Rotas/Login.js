@@ -24,7 +24,7 @@ export default function Login () {
         setDisabled(!disabled);
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
         promise.then(res => {
-            setLogin({ ...login, token: res.token, image: res.image });
+            //setLogin({ ...login, token: res.token, image: res.image });
             navigate("/habitos");
         });
         promise.catch(err=>alert(err.response.status));
@@ -35,8 +35,8 @@ export default function Login () {
         <Body>
             <Logo src={logo}/>
             <Form onSubmit={logIn}>
-                <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
-                <Input placeholder="senha" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} required></Input>
+                <Input disabled={disabled} placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></Input>
+                <Input disabled={disabled} placeholder="senha" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} required></Input>
                 <Button disabled={disabled} type="submit" >{!disabled ? "Entrar" : <Loading/>}</Button>
             </Form>
             <Cadastro onClick={() => navigate("/Cadastro")}><span>Não tem uma conta? Cadastre-se!</span></Cadastro>
@@ -77,6 +77,10 @@ const Input = styled.input`
     &::placeholder {
         color: #D4D4D4;
     }
+
+    &:disabled {
+        opacity: 70%;
+    }
 `;
 
 const Button = styled.button`
@@ -91,6 +95,7 @@ const Button = styled.button`
 
     &:disabled {
         background-color: #52B6FF;
+        opacity: 70%;
     }
 
     &:enabled {

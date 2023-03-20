@@ -32,7 +32,14 @@ const Day = () => {
 };
 
 const D = ({dia}) => {
-    return <button>{dia}</button>;
+
+    const [selecionado, setSelecionado] = useState(false);
+
+    const seleciona = () => {
+        setSelecionado(!selecionado);
+    }
+    
+    return <DayButton selecionado={selecionado} onClick={seleciona}>{dia}</DayButton>;
 };
 
 const Box = styled.div`
@@ -44,10 +51,10 @@ const Box = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 10px;
 
     button {
         border: 1px solid #D4D4D4;
-        background-color: white;
     }
 
 `
@@ -74,8 +81,6 @@ const Days = styled.div`
     button {
         margin-right: 5px;
         font-size: 20px;
-        color: #DBDBDB;
-        background-color: #FFFFFF;
         height: 30px;
         width: 30px;
         border-radius: 5px;
@@ -96,5 +101,32 @@ const Options = styled.div`
         background-color: #52B6FF;
         border-radius: 5px;
         margin-left: 25px;
+    }
+
+    button:enabled:hover {
+        cursor: pointer;
+    }
+
+    button:enabled:active {
+        transform: scale(0.97);
+    }
+
+    span:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+`
+
+const DayButton = styled.button`
+
+    color: ${(props) => props.selecionado ? "white" : "#DBDBDB"};
+    background-color: ${(props) => props.selecionado ? "#CFCFCF" : "white"};
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.9);
     }
 `

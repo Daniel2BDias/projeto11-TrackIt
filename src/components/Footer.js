@@ -47,6 +47,11 @@ const Foot = styled.footer`
         width: 100px;
         text-align: center;
     }
+
+    div:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 `
 const Progress = styled.article`
     height: 100px;
@@ -59,6 +64,10 @@ const Hoje = styled.section`
     position: absolute;
     color: #FFFFFF;
     top: 41px;
-    left: 33.5%;
+    left: 32%;
     z-index: 2;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
