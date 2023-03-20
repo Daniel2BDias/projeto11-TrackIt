@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { CgTrash } from "react-icons/cg";
 import dayArray from "../assets/Arrays/dayArray";
 
-export default function Habito ({habits}) {
+export default function Habito ({name, days}) {
     const removeHabit = () => {
 
     }
@@ -11,9 +11,9 @@ export default function Habito ({habits}) {
         <Box data-test="habit-container"> 
             <Cont>
                 <h1 data-test="habit-name">
-                    {"placeholder"}
+                    {name}
                 </h1>
-                <Days days={null}/>
+                <Days days={days}/>
             </Cont>
             <CgTrash data-test="habit-delete-btn" onClick={() => removeHabit} className="icon"
                 color="666666"
@@ -30,6 +30,7 @@ const Box = styled.div`
     padding: 10px 10px 10px 20px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
 
     .icon:hover {
         cursor: pointer;

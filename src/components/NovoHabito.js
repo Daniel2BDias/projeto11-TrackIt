@@ -4,6 +4,10 @@ import { useState } from "react";
 
 export default function NovoHabito ({newHabit, setNewHabit}) {
 
+    function salvarHabito () {
+        setNewHabit({name: "", days: []});
+    };
+
     return (
         <Box data-test="habit-create-container">
             <InputBox>
@@ -15,7 +19,7 @@ export default function NovoHabito ({newHabit, setNewHabit}) {
             <Options>
                 <div>
                     <span data-test="habit-create-cancel-btn" onClick={() => setNewHabit(false)}>Cancelar</span>
-                    <button data-test="habit-create-save-btn">Salvar</button>
+                    <button data-test="habit-create-save-btn" onclick={salvarHabito}>Salvar</button>
                 </div>
             </Options>
         </Box>

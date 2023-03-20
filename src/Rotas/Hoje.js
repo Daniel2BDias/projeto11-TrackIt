@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { CgCheck } from "react-icons/cg";
+import Loading from "../components/Loading";
+import { useState } from "react";
 
 export default function Hoje () {
 
@@ -20,7 +22,7 @@ export default function Hoje () {
             Saturday: "Sábado"
           };
 
-        function currentDay() {
+        const curDay = () => {
             return `${weekdays[dayjs().format("dddd")]}, ${dayjs().format("DD")}/${dayjs().format("MM")}`
           }
 
@@ -29,7 +31,7 @@ export default function Hoje () {
             <Header></Header>
             <Box>
                 <Menu>
-                {currentDay()}
+                {curDay()}
                 <MOTD data-test="today-counter">
                     Nenhum hábito concluído ainda
                 </MOTD>
@@ -42,12 +44,13 @@ export default function Hoje () {
 };
 
 const Body = styled.main`
-    height: 80vh;
+    height: 75vh;
     width: 100%;
     margin: 70px 0;
     background-color: #F2F2F2;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 `
 
 const Box = styled.div`
@@ -71,29 +74,73 @@ const Menu = styled.div`
 `
 
 const Hj = () => {
+
+    const [disabled, setDisabled] = useState(false);
+
+    function completeHabit () {
+        setDisabled(true);
+    }
+
     return (
         <H>
             <Info>
                 <h1>Habito</h1>
                 <div>
-                    <p>Sequecia atual</p>
-                    <p>Recorde</p>
+                    <p>Sequecia atual:</p>
+                    <p>Recorde:</p>
                 </div>
             </Info>
-            <button></button>
+            <button disabled={disabled} onClick={completeHabit}>{disabled ? <Loading/> : <CgCheck color="white" size={100}/>}</button>
         </H>
     )
 };
 
 const H = styled.div`
-    width: 95%;
+    width: 97%;
     height: 95px;
     background-color: #FFFFFF;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    button {
+        height: 80px;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    button:enabled {
+        border: 1px solid #E7E7E7;
+    }
+
+    button:disabled {
+        background-color: #52B6FF;
+    }
+
+    button:enabled:hover{
+        cursor: pointer;
+    }
+
+    button:enabled:active {
+        transform: scale(0.97);
+    }
 `
 
 const Info = styled.div`
+    h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
 
+    p {
+
+    }
 `
 
 const MOTD = styled.div`

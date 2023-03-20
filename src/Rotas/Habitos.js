@@ -22,4 +22,5 @@ const Body = styled.main`
     background-color: #F2F2F2;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 `;
