@@ -7,9 +7,9 @@ export default function Footer () {
     const navigate = useNavigate()
     return (
         <Foot data-test="menu">
-            <div data-test="habit-link" className="habitos" onClick={() => navigate("/Habitos")}>Hábitos</div>
+            <div data-test="habit-link" className="habitos" onClick={() => navigate("/habitos")}>Hábitos</div>
             <Progress data-test="today-link">
-            <Hoje onClick={() => navigate("/Hoje")}>Hoje</Hoje>
+            <Hoje onClick={() => navigate("/hoje")}>Hoje</Hoje>
             <CircularProgressbar
                 value={0}
                 maxValue={100}
@@ -24,7 +24,7 @@ export default function Footer () {
                 })}
             />
             </Progress>
-            <div data-test="history-link" onClick={() => navigate("/Historico")} className="historico">Histórico</div>
+            <div data-test="history-link" onClick={() => navigate("/historico")} className="historico">Histórico</div>
         </Foot>
     )
 };
